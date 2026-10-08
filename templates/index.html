@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="FarmShield AI - AI-powered crop intelligence, disease analysis, irrigation guidance and precision farming insights.">
+    <title>FarmShield AI — Smart Farming Intelligence</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
+</head>
+<body>
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- NAVIGATION -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="#" class="navbar-brand">
+                <span class="brand-icon">🌿</span>
+                <span class="brand-text">FarmShield <span class="brand-ai">AI</span></span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#hero" class="nav-link active">Home</a></li>
+                <li><a href="#analyze" class="nav-link">Analyze Crop</a></li>
+                <li><a href="#intelligence" class="nav-link">Crop Intelligence</a></li>
+                <li><a href="#visualization" class="nav-link">3D View</a></li>
+                <li><a href="#report" class="nav-link">Reports</a></li>
+                <li><a href="#history" class="nav-link">History</a></li>
+            </ul>
+            <div class="nav-right">
+                <div class="ai-status">
+                    <span class="ai-status-label">AI SYSTEM</span>
+                    <span class="ai-status-dot"></span>
+                    <span class="ai-status-text">ONLINE</span>
+                </div>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle dark/light theme">
+                    <span class="theme-icon">☀️</span>
+                </button>
+                <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- HERO SECTION -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <section class="hero" id="hero">
+        <div class="hero-bg-animation" id="heroBgAnimation"></div>
+        <div class="hero-particles" id="heroParticles"></div>
+        <div class="container hero-container">
+            <div class="hero-content">
+                <div class="hero-badge animate-on-scroll fade-up">
+                    <span class="badge-dot"></span>
+                    AI-Powered Precision Agriculture
+                </div>
+                <h1 class="hero-title animate-on-scroll fade-up">
+                    The Future of<br>
+                    <span class="hero-highlight">Smart Farming</span> Starts Here.
+                </h1>
+                <p class="hero-subtitle animate-on-scroll fade-up">
+                    Analyze your crop, detect potential health problems, optimize irrigation
+                    and receive intelligent farming recommendations — all from a single platform.
+                </p>
+                <div class="hero-buttons animate-on-scroll fade-up">
+                    <a href="#analyze" class="btn btn-primary">
+                        <span class="btn-icon">✦</span> Analyze My Crop
+                    </a>
+                    <a href="#intelligence" class="btn btn-secondary">
+                        Explore Intelligence →
+                    </a>
+                </div>
+                <div class="hero-stats animate-on-scroll fade-up">
+                    <div class="hero-stat">
+                        <span class="hero-stat-value" data-target="11">11</span>
+                        <span class="hero-stat-label">Crop Types</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-value">Real-time</span>
+                        <span class="hero-stat-label">Analysis</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-value">3D</span>
+                        <span class="hero-stat-label">Visualization</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <canvas id="heroCanvas" aria-hidden="true"></canvas>
+                <!-- AI Status Panel -->
+                <div class="ai-status-panel animate-on-scroll fade-up">
+                    <div class="status-panel-header">
+                        <span class="status-panel-icon">🌿</span>
+                        <div>
+                            <div class="status-panel-title">FARMSHIELD AI</div>
+                            <div class="status-panel-subtitle">SYSTEM STATUS</div>
+                        </div>
+                    </div>
+                    <div class="status-panel-items">
+                        <div class="status-item">
+                            <span class="status-dot online"></span>
+                            <span>AI Engine Online</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-dot online"></span>
+                            <span>Crop Analysis Ready</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-dot online"></span>
+                            <span>Irrigation Engine Ready</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-dot online"></span>
+                            <span>Image Processing Ready</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-scroll-indicator">
+            <span>Scroll to Explore</span>
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- CROP ANALYSIS SECTION -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <section class="section" id="analyze">
+        <div class="container">
+            <div class="section-header animate-on-scroll fade-up">
+                <span class="section-badge">🔬 ANALYSIS</span>
+                <h2 class="section-title">Analyze Your <span class="text-green">Crop</span></h2>
+                <p class="section-subtitle">Give FarmShield AI the information it needs to understand your crop's health and optimize your farming.</p>
+            </div>
+
+            <div class="analysis-card glass animate-on-scroll fade-up">
+                <form id="assessmentForm" novalidate>
+                    <div class="form-grid">
+                        <!-- Crop Selection -->
+                        <div class="form-group">
+                            <label class="form-label" for="cropSelect">
+                                <span class="label-icon">🌱</span> Crop Type
+                            </label>
+                            <select class="form-select" id="cropSelect" name="crop" required>
+                                <option value="" disabled selected>Select your crop...</option>
+                                <option value="Rice">Rice</option>
+                                <option value="Wheat">Wheat</option>
+                                <option value="Maize">Maize</option>
+                                <option value="Cotton">Cotton</option>
+                                <option value="Tomato">Tomato</option>
+                                <option value="Potato">Potato</option>
+                                <option value="Sugarcane">Sugarcane</option>
+                                <option value="Soybean">Soybean</option>
+                                <option value="Groundnut">Groundnut</option>
+                                <option value="Mustard">Mustard</option>
+                                <option value="Other">Other (specify below)</option>
+                            </select>
+                            <input type="text" class="form-input" id="cropCustom" name="cropCustom" placeholder="Enter crop name..." style="display:none; margin-top:8px;">
+                        </div>
+
+                        <!-- Growth Stage -->
+                        <div class="form-group">
+                            <label class="form-label" for="stageSelect">
+                                <span class="label-icon">📊</span> Growth Stage
+                            </label>
+                            <select class="form-select" id="stageSelect" name="stage" required>
+                                <option value="" disabled selected>Select growth stage...</option>
+                                <option value="Seedling">Seedling</option>
+                                <option value="Vegetative">Vegetative</option>
+                                <option value="Flowering">Flowering</option>
+                                <option value="Fruiting">Fruiting</option>
+                                <option value="Maturity">Maturity</option>
+                                <option value="Harvest">Harvest</option>
+                            </select>
+                        </div>
+
+                        <!-- Soil Moisture -->
+                        <div class="form-group">
+                            <label class="form-label" for="soilMoisture">
+                                <span class="label-icon">💧</span> Soil Moisture (%)
+                            </label>
+                            <div class="input-with-meter">
+                                <input type="number" class="form-input" id="soilMoisture" name="soil_moisture" min="0" max="100" step="1" placeholder="e.g. 45" required>
+                                <div class="meter-container">
+                                    <div class="meter-fill" id="moistureMeter"></div>
+                                </div>
+                                <span class="meter-value" id="moistureValue">—%</span>
+                            </div>
+                        </div>
+
+                        <!-- Temperature -->
+                        <div class="form-group">
+                            <label class="form-label" for="temperature">
+                                <span class="label-icon">🌡️</span> Temperature (°C)
+                            </label>
+                            <div class="input-with-meter">
+                                <input type="number" class="form-input" id="temperature" name="temperature" min="-20" max="60" step="0.1" placeholder="e.g. 28" required>
+                                <span class="meter-value temp-display" id="tempDisplay">—°C</span>
+                            </div>
+                        </div>
+
+                        <!-- Humidity -->
+                        <div class="form-group">
+                            <label class="form-label" for="humidity">
+                                <span class="label-icon">☁️</span> Humidity (%)
+                            </label>
+                            <div class="input-with-meter">
+                                <input type="number" class="form-input" id="humidity" name="humidity" min="0" max="100" step="1" placeholder="e.g. 65" required>
+                                <div class="meter-container">
+                                    <div class="meter-fill humidity-fill" id="humidityMeter"></div>
+                                </div>
+                                <span class="meter-value" id="humidityValue">—%</span>
+                            </div>
+                        </div>
+
+                        <!-- Additional Notes -->
+                        <div class="form-group full-width">
+                            <label class="form-label" for="notes">
+                                <span class="label-icon">📝</span> Additional Information (Optional)
+                            </label>
+                            <textarea class="form-textarea" id="notes" name="notes" rows="3" placeholder="Describe anything unusual about your crop... e.g. Leaves are turning yellow, growth is slower than usual, spots appearing on leaves"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Image Upload -->
+                    <div class="upload-section">
+                        <h3 class="upload-title">
+                            <span class="label-icon">📸</span> Upload Crop or Leaf Image
+                        </h3>
+                        <div class="upload-area" id="uploadArea" role="button" tabindex="0" aria-label="Click or drag and drop to upload crop image">
+                            <input type="file" id="fileInput" name="leaf" accept=".jpg,.jpeg,.png,.webp" hidden>
+                            <div class="upload-placeholder" id="uploadPlaceholder">
+                                <div class="upload-icon">
+                                    <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <rect x="8" y="12" width="48" height="40" rx="8" stroke="currentColor" stroke-width="2" stroke-dasharray="4 4"/>
+                                        <path d="M24 40L30 32L34 36L38 30L44 40H24Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                                        <circle cx="27" cy="24" r="3" stroke="currentColor" stroke-width="2"/>
+                                        <path d="M32 8V18M27 13H37" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                    </svg>
+                                </div>
+                                <p class="upload-text">Drag & drop an image here or <span class="upload-browse">browse</span></p>
+                                <p class="upload-hint">Supports JPG, JPEG, PNG, WEBP • Max 10MB</p>
+                            </div>
+                            <div class="image-preview-container" id="imagePreviewContainer" style="display:none;">
+                                <img id="imagePreview" alt="Uploaded crop image preview">
+                                <div class="scan-line" id="scanLine"></div>
+                                <div class="image-info" id="fileInfo">
+                                    <span id="fileName"></span>
+                                    <span id="fileSize"></span>
+                                </div>
+                                <button type="button" class="remove-image" id="removeImage" aria-label="Remove uploaded image">✕</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Analyze Button -->
+                    <div class="analyze-section">
+                        <button type="submit" class="analyze-btn" id="analyzeBtn">
+                            <span class="btn-content">
+                                <span class="btn-icon">✦</span>
+                                <span class="btn-text">ANALYZE MY CROP</span>
+                            </span>
+                            <span class="btn-loading" style="display:none;">
+                                <span class="spinner"></span>
+                                <span class="loading-text" id="loadingText">INITIALIZING AI...</span>
+                            </span>
+                        </button>
+                        <p class="analyze-hint">Analysis powered by FarmShield AI Engine • Prototype assessment</p>
+                    </div>
+                </form>
+
+                <!-- AI Processing Overlay -->
+                <div class="ai-processing" id="processingOverlay" style="display:none;">
+                    <div class="processing-card">
+                        <div class="processing-icon">
+                            <div class="processing-ring"></div>
+                            <span>🌿</span>
+                        </div>
+                        <h3 class="processing-title">AI Analysis in Progress</h3>
+                        <div class="processing-steps" id="processingSteps">
+                            <div class="processing-step" data-step="1">
+                                <span class="step-icon">○</span>
+                                <span class="step-text">Initializing AI Engine</span>
+                            </div>
+                            <div class="processing-step" data-step="2">
+                                <span class="step-icon">○</span>
+                                <span class="step-text">Analyzing Crop Data</span>
+                            </div>
+                            <div class="processing-step" data-step="3">
+                                <span class="step-icon">○</span>
+                                <span class="step-text">Processing Image</span>
+                            </div>
+                            <div class="processing-step" data-step="4">
+                                <span class="step-icon">○</span>
+                                <span class="step-text">Analyzing Environment</span>
+                            </div>
+                            <div class="processing-step" data-step="5">
+                                <span class="step-icon">○</span>
+                                <span class="step-text">Calculating Irrigation</span>
+                            </div>
+                            <div class="processing-step" data-step="6">
+                                <span class="step-icon">○</span>
+                                <span class="step-text">Generating Insights</span>
+                            </div>
+                        </div>
+                        <div class="processing-progress">
+                            <div class="progress-bar" id="progressBar"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Error Display -->
+            <div class="error-card" id="errorCard" style="display:none;">
+                <div class="error-icon">⚠️</div>
+                <p class="error-message" id="errorMessage">Something went wrong.</p>
+                <button class="error-close" id="errorClose" aria-label="Close error">✕</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- RESULTS DASHBOARD -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <section class="section results-section hidden" id="results">
+        <div class="container">
+            <div class="section-header animate-on-scroll fade-up">
+                <span class="section-badge">📊 RESULTS</span>
+                <h2 class="section-title">AI Analysis <span class="text-green">Dashboard</span></h2>
+                <p class="section-subtitle">FarmShield AI has analyzed your crop. Review the comprehensive assessment below.</p>
+            </div>
+
+            <!-- Top Row: Health Score + Disease + Irrigation -->
+            <div class="results-top-grid">
+                <!-- Health Score Card -->
+                <div class="result-card health-score-card glass animate-on-scroll fade-up">
+                    <div class="card-header">
+                        <span class="card-badge">HEALTH INDEX</span>
+                        <span class="card-badge-proto">Prototype Estimate</span>
+                    </div>
+                    <div class="score-container">
+                        <svg class="score-ring-svg" viewBox="0 0 200 200">
+                            <circle class="score-ring-bg" cx="100" cy="100" r="90" />
+                            <circle class="score-ring" id="scoreRing" cx="100" cy="100" r="90" />
+                        </svg>
+                        <div class="score-text">
+                            <span class="score-value" id="scoreValue">—</span>
+                            <span class="score-max">/100</span>
+                        </div>
+                    </div>
+                    <div class="score-label" id="scoreLabel">ANALYZING...</div>
+                    <div class="score-subtitle">FarmShield Health Index</div>
+                </div>
+
+                <!-- Disease Analysis Card -->
+                <div class="result-card disease-card glass animate-on-scroll fade-up">
+                    <div class="card-header">
+                        <span class="card-badge">🔬 AI CROP HEALTH ANALYSIS</span>
+                    </div>
+                    <div class="disease-content">
+                        <div class="disease-label">Detected Condition</div>
+                        <div class="disease-name" id="diseaseName">—</div>
+                        <div class="confidence-section">
+                            <div class="confidence-header">
+                                <span>Confidence</span>
+                                <span class="confidence-value" id="confidenceValue">—%</span>
+                            </div>
+                            <div class="confidence-track">
+                                <div class="confidence-bar" id="confidenceBar"></div>
+                            </div>
+                        </div>
+                        <div class="risk-section">
+                            <span class="risk-label">Risk Level</span>
+                            <span class="risk-badge" id="riskBadge">—</span>
+                        </div>
+                        <p class="disease-note" id="diseaseNote">AI-assisted prototype analysis</p>
+                    </div>
+                </div>
+
+                <!-- Irrigation Card -->
+                <div class="result-card irrigation-card glass animate-on-scroll fade-up">
+                    <div class="card-header">
+                        <span class="card-badge">💧 PRECISION IRRIGATION</span>
+                    </div>
+                    <div class="irrigation-content">
+                        <div class="irrigation-visual">
+                            <div class="water-drop" id="waterDrop">
+                                <svg viewBox="0 0 60 80" fill="none">
+                                    <path d="M30 5C30 5 5 35 5 52C5 65.8 16.2 75 30 75C43.8 75 55 65.8 55 52C55 35 30 5 30 5Z" fill="currentColor" opacity="0.3"/>
+                                    <path d="M30 5C30 5 5 35 5 52C5 65.8 16.2 75 30 75C43.8 75 55 65.8 55 52C55 35 30 5 30 5Z" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                            </div>
+                            <div class="irrigation-status" id="irrigationStatus">—</div>
+                        </div>
+                        <div class="irrigation-data">
+                            <div class="irrigation-item">
+                                <span class="irrigation-item-label">Soil Moisture</span>
+                                <span class="irrigation-item-value" id="irrMoisture">—%</span>
+                            </div>
+                            <div class="irrigation-item">
+                                <span class="irrigation-item-label">Temperature</span>
+                                <span class="irrigation-item-value" id="irrTemp">—°C</span>
+                            </div>
+                            <div class="irrigation-item">
+                                <span class="irrigation-item-label">Humidity</span>
+                                <span class="irrigation-item-value" id="irrHumidity">—%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Explanation Card -->
+            <div class="result-card explanation-card glass animate-on-scroll fade-up">
+                <div class="card-header">
+                    <span class="card-badge">🧠 WHY THIS RECOMMENDATION?</span>
+                </div>
+                <p class="explanation-text" id="explanationText">—</p>
+                <div class="safety-note" id="safetyNote">
+                    <span class="safety-icon">ℹ️</span>
+                    <span>—</span>
+                </div>
+            </div>
+
+            <!-- Crop Intelligence Section -->
+            <div id="intelligence" class="intelligence-section">
+                <h3 class="subsection-title animate-on-scroll fade-up">
+                    <span class="label-icon">📡</span> Crop Intelligence
+                </h3>
+                <div class="intelligence-grid" id="intelligenceGrid">
+                    <div class="intel-card glass animate-on-scroll fade-up">
+                        <div class="intel-icon">🌱</div>
+                        <div class="intel-label">Crop</div>
+                        <div class="intel-value" id="intelCrop">—</div>
+                    </div>
+                    <div class="intel-card glass animate-on-scroll fade-up">
+                        <div class="intel-icon">📊</div>
+                        <div class="intel-label">Growth Stage</div>
+                        <div class="intel-value" id="intelStage">—</div>
+                    </div>
+                    <div class="intel-card glass animate-on-scroll fade-up">
+                        <div class="intel-icon">🌡️</div>
+                        <div class="intel-label">Temperature</div>
+                        <div class="intel-value" id="intelTemp">—</div>
+                    </div>
+                    <div class="intel-card glass animate-on-scroll fade-up">
+                        <div class="intel-icon">☁️</div>
+                        <div class="intel-label">Humidity</div>
+                        <div class="intel-value" id="intelHumidity">—</div>
+                    </div>
+                    <div class="intel-card glass animate-on-scroll fade-up">
+                        <div class="intel-icon">💧</div>
+                        <div class="intel-label">Soil Moisture</div>
+                        <div class="intel-value" id="intelMoisture">—</div>
+                    </div>
+                    <div class="intel-card glass animate-on-scroll fade-up">
+                        <div class="intel-icon">⚠️</div>
+                        <div class="intel-label">Estimated Risk</div>
+                        <div class="intel-value" id="intelRisk">—</div>
+                    </div>
+                    <div class="intel-card glass animate-on-scroll fade-up">
+                        <div class="intel-icon">🚿</div>
+                        <div class="intel-label">Water Status</div>
+                        <div class="intel-value" id="intelWater">—</div>
+                    </div>
+                    <div class="intel-card glass animate-on-scroll fade-up">
+                        <div class="intel-icon">💚</div>
+                        <div class="intel-label">Crop Health</div>
+                        <div class="intel-value" id="intelHealth">—</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Environmental Analytics -->
+            <div class="analytics-section animate-on-scroll fade-up">
+                <h3 class="subsection-title">
+                    <span class="label-icon">📈</span> Environmental Analytics
+                </h3>
+                <div class="analytics-grid">
+                    <div class="gauge-card glass">
+                        <div class="gauge-container">
+                            <svg class="gauge-svg" viewBox="0 0 120 120">
+                                <circle class="gauge-bg" cx="60" cy="60" r="52"/>
+                                <circle class="gauge-fill" id="moistureGauge" cx="60" cy="60" r="52"/>
+                            </svg>
+                            <div class="gauge-value" id="gaugeMoistureValue">—</div>
+                        </div>
+                        <div class="gauge-label">Soil Moisture</div>
+                    </div>
+                    <div class="gauge-card glass">
+                        <div class="gauge-container">
+                            <svg class="gauge-svg" viewBox="0 0 120 120">
+                                <circle class="gauge-bg" cx="60" cy="60" r="52"/>
+                                <circle class="gauge-fill temp-gauge" id="tempGauge" cx="60" cy="60" r="52"/>
+                            </svg>
+                            <div class="gauge-value" id="gaugeTempValue">—</div>
+                        </div>
+                        <div class="gauge-label">Temperature</div>
+                    </div>
+                    <div class="gauge-card glass">
+                        <div class="gauge-container">
+                            <svg class="gauge-svg" viewBox="0 0 120 120">
+                                <circle class="gauge-bg" cx="60" cy="60" r="52"/>
+                                <circle class="gauge-fill humidity-gauge" id="humidityGauge" cx="60" cy="60" r="52"/>
+                            </svg>
+                            <div class="gauge-value" id="gaugeHumidityValue">—</div>
+                        </div>
+                        <div class="gauge-label">Humidity</div>
+                    </div>
+                    <div class="gauge-card stage-card glass">
+                        <div class="stage-timeline" id="stageTimeline">
+                            <div class="stage-step" data-stage="Seedling">
+                                <div class="stage-dot"></div>
+                                <span>Seedling</span>
+                            </div>
+                            <div class="stage-step" data-stage="Vegetative">
+                                <div class="stage-dot"></div>
+                                <span>Vegetative</span>
+                            </div>
+                            <div class="stage-step" data-stage="Flowering">
+                                <div class="stage-dot"></div>
+                                <span>Flowering</span>
+                            </div>
+                            <div class="stage-step" data-stage="Fruiting">
+                                <div class="stage-dot"></div>
+                                <span>Fruiting</span>
+                            </div>
+                            <div class="stage-step" data-stage="Maturity">
+                                <div class="stage-dot"></div>
+                                <span>Maturity</span>
+                            </div>
+                            <div class="stage-step" data-stage="Harvest">
+                                <div class="stage-dot"></div>
+                                <span>Harvest</span>
+                            </div>
+                        </div>
+                        <div class="gauge-label">Crop Growth Stage</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Farming Techniques -->
+            <div class="techniques-section animate-on-scroll fade-up">
+                <h3 class="subsection-title">
+                    <span class="label-icon">🌾</span> Recommended Farming Techniques
+                </h3>
+                <p class="subsection-note">AI-generated general farming guidance</p>
+                <div class="techniques-grid" id="techniquesList">
+                    <!-- Dynamically populated by JS -->
+                </div>
+            </div>
+
+            <!-- Crop Protection Timeline -->
+            <div class="protection-section animate-on-scroll fade-up">
+                <h3 class="subsection-title">
+                    <span class="label-icon">🛡️</span> Crop Protection Strategy
+                </h3>
+                <div class="protection-timeline" id="protectionTimeline">
+                    <div class="timeline-step">
+                        <div class="step-number">01</div>
+                        <div class="step-content">
+                            <h4 class="step-title">MONITOR</h4>
+                            <p class="step-desc">Regularly inspect crop leaves, stems, and roots for signs of stress, discoloration, or pest damage.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-step">
+                        <div class="step-number">02</div>
+                        <div class="step-content">
+                            <h4 class="step-title">PREVENT</h4>
+                            <p class="step-desc">Maintain proper irrigation, nutrition, and field hygiene to prevent disease outbreaks.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-step">
+                        <div class="step-number">03</div>
+                        <div class="step-content">
+                            <h4 class="step-title">PROTECT</h4>
+                            <p class="step-desc">Apply recommended treatments promptly. Use IPM strategies and consult agricultural experts.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-step">
+                        <div class="step-number">04</div>
+                        <div class="step-content">
+                            <h4 class="step-title">RECOVER</h4>
+                            <p class="step-desc">If damage occurs, identify the cause quickly. Adjust management practices and seek professional guidance.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- 3D VISUALIZATION SECTION -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <section class="section viz-section hidden" id="visualization">
+        <div class="container">
+            <div class="section-header animate-on-scroll fade-up">
+                <span class="section-badge">🌐 3D VIEW</span>
+                <h2 class="section-title">AI 3D <span class="text-green">Crop View</span></h2>
+                <p class="section-subtitle">AI-assisted 3D crop visualization • Prototype visualization</p>
+            </div>
+            <div class="viz-wrapper glass animate-on-scroll fade-up">
+                <div class="viz-canvas-container" id="vizCanvasContainer">
+                    <canvas id="vizCanvas"></canvas>
+                    <div class="viz-labels" id="vizLabels">
+                        <div class="viz-label" id="vizLabelLeaf" style="display:none;">
+                            <span class="viz-label-dot"></span> LEAF HEALTH
+                        </div>
+                        <div class="viz-label" id="vizLabelSoil" style="display:none;">
+                            <span class="viz-label-dot"></span> SOIL MOISTURE
+                        </div>
+                        <div class="viz-label" id="vizLabelRoot" style="display:none;">
+                            <span class="viz-label-dot"></span> ROOT ZONE
+                        </div>
+                        <div class="viz-label" id="vizLabelWater" style="display:none;">
+                            <span class="viz-label-dot"></span> WATER STATUS
+                        </div>
+                    </div>
+                </div>
+                <div class="viz-fallback" id="vizFallback" style="display:none;">
+                    <div class="fallback-plant">
+                        <div class="fallback-leaf left"></div>
+                        <div class="fallback-leaf right"></div>
+                        <div class="fallback-stem"></div>
+                        <div class="fallback-soil"></div>
+                    </div>
+                    <p>3D visualization requires WebGL. Showing simplified 2D view.</p>
+                </div>
+                <div class="viz-hint-bar">
+                    <span>🖱️ Drag to rotate</span>
+                    <span>🔍 Scroll to zoom</span>
+                    <span>📱 Touch &amp; drag on mobile</span>
+                    <span class="viz-hint-legend">
+                        <span style="color:#00d26a;">● Healthy</span>
+                        <span style="color:#ffd24d;">● Moderate Risk</span>
+                        <span style="color:#ff4d4d;">● High Risk</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- AI CROP REPORT SECTION -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <section class="section report-section hidden" id="report">
+        <div class="container">
+            <div class="section-header animate-on-scroll fade-up">
+                <span class="section-badge">📋 REPORT</span>
+                <h2 class="section-title">Crop Intelligence <span class="text-green">Report</span></h2>
+                <p class="section-subtitle">Complete FarmShield AI assessment report</p>
+            </div>
+            <div class="report-card glass animate-on-scroll fade-up" id="reportContent">
+                <div class="report-header">
+                    <div class="report-logo">🌿 FarmShield AI</div>
+                    <div class="report-title-text">CROP INTELLIGENCE REPORT</div>
+                    <div class="report-date" id="reportDate">—</div>
+                </div>
+                <div class="report-body">
+                    <div class="report-section-block">
+                        <h4 class="report-section-title">📊 Crop Information</h4>
+                        <div class="report-grid">
+                            <div class="report-item">
+                                <span class="report-label">Crop</span>
+                                <span class="report-value" id="reportCrop">—</span>
+                            </div>
+                            <div class="report-item">
+                                <span class="report-label">Growth Stage</span>
+                                <span class="report-value" id="reportStage">—</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="report-section-block">
+                        <h4 class="report-section-title">🌡️ Environmental Conditions</h4>
+                        <div class="report-grid">
+                            <div class="report-item">
+                                <span class="report-label">Soil Moisture</span>
+                                <span class="report-value" id="reportMoisture">—</span>
+                            </div>
+                            <div class="report-item">
+                                <span class="report-label">Temperature</span>
+                                <span class="report-value" id="reportTemp">—</span>
+                            </div>
+                            <div class="report-item">
+                                <span class="report-label">Humidity</span>
+                                <span class="report-value" id="reportHumidity">—</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="report-section-block">
+                        <h4 class="report-section-title">🔬 Disease / Stress Analysis</h4>
+                        <div class="report-grid">
+                            <div class="report-item">
+                                <span class="report-label">Detected Condition</span>
+                                <span class="report-value" id="reportDisease">—</span>
+                            </div>
+                            <div class="report-item">
+                                <span class="report-label">Confidence</span>
+                                <span class="report-value" id="reportConfidence">—</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="report-section-block">
+                        <h4 class="report-section-title">💧 Irrigation Recommendation</h4>
+                        <div class="report-grid">
+                            <div class="report-item">
+                                <span class="report-label">Recommendation</span>
+                                <span class="report-value" id="reportIrrigation">—</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="report-section-block">
+                        <h4 class="report-section-title">🧠 AI Explanation</h4>
+                        <p class="report-explanation" id="reportExplanation">—</p>
+                    </div>
+                    <div class="report-section-block">
+                        <h4 class="report-section-title">⚠️ Safety Notice</h4>
+                        <p class="report-safety" id="reportSafety">—</p>
+                    </div>
+                </div>
+                <div class="report-footer-bar">
+                    <span>Generated by FarmShield AI • Prototype Assessment</span>
+                </div>
+            </div>
+            <div class="report-actions animate-on-scroll fade-up">
+                <button class="btn btn-primary" id="downloadReport">
+                    <span class="btn-icon">📥</span> Download / Print Report
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- DASHBOARD METRICS -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <section class="section metrics-section" id="metrics">
+        <div class="container">
+            <div class="metrics-bar animate-on-scroll fade-up">
+                <div class="metric-card glass">
+                    <div class="metric-value" id="totalAnalyses">0</div>
+                    <div class="metric-label">Total Analyses</div>
+                </div>
+                <div class="metric-card glass">
+                    <div class="metric-value" id="healthyCrops">0</div>
+                    <div class="metric-label">Healthy Crops</div>
+                </div>
+                <div class="metric-card glass">
+                    <div class="metric-value" id="irrigationAlerts">0</div>
+                    <div class="metric-label">Irrigation Alerts</div>
+                </div>
+                <div class="metric-card glass">
+                    <div class="metric-value" id="avgHealth">0%</div>
+                    <div class="metric-label">Avg. Health Index</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- ASSESSMENT HISTORY -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <section class="section history-section" id="history">
+        <div class="container">
+            <div class="section-header animate-on-scroll fade-up">
+                <span class="section-badge">📜 HISTORY</span>
+                <h2 class="section-title">Assessment <span class="text-green">History</span></h2>
+                <p class="section-subtitle">Review your previous crop assessments</p>
+            </div>
+            <div class="history-grid" id="historyGrid">
+                <!-- Dynamically populated by JS -->
+                <div class="history-empty" id="historyEmpty">
+                    <div class="empty-icon">🌱</div>
+                    <h3>No previous assessments yet</h3>
+                    <p>Analyze your first crop to begin your FarmShield history.</p>
+                    <a href="#analyze" class="btn btn-secondary">Start First Analysis</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- FOOTER -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">🌿 FarmShield <span class="brand-ai">AI</span></div>
+                    <p class="footer-tagline">AI-powered crop intelligence for smarter farming.</p>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-heading">Platform</h4>
+                    <ul class="footer-links">
+                        <li><a href="#analyze">Analyze Crop</a></li>
+                        <li><a href="#intelligence">Crop Intelligence</a></li>
+                        <li><a href="#visualization">3D Visualization</a></li>
+                        <li><a href="#report">Reports</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-heading">Technology</h4>
+                    <ul class="footer-links">
+                        <li><a href="#analyze">AI Analysis</a></li>
+                        <li><a href="#results">Precision Irrigation</a></li>
+                        <li><a href="#history">Crop Monitoring</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-heading">Disclaimer</h4>
+                    <p class="footer-disclaimer">FarmShield AI provides prototype/general guidance. Always confirm important agricultural decisions with qualified local agricultural professionals.</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2026 FarmShield AI. All rights reserved.</span>
+                <span>See Your Crop. Understand Your Farm. Grow Smarter.</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- SCRIPTS -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</body>
+</html>
